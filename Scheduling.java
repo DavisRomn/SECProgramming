@@ -39,6 +39,10 @@ class Scheduling
         return Elevators.get(elevatorNumber).getHeight();
     }
 
+    public void addElevatorDestination(int elevator, int floor){
+        Elevators.get(elevator).addDestination(floor * 3);
+    }
+
     public int elevatorToCall(int callDir, int callFloor)
     {
         Vector<Double> score = new Vector<Double>();
@@ -73,5 +77,11 @@ class Scheduling
             }
         }
         return elevatorReturn;
+    }
+
+    public static void main(String []arg)
+    {
+        Scheduling A = new Scheduling();
+        A.addElevatorDestination(0, 3);
     }
 }

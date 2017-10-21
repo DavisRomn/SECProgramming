@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-class Elevator extends Thread
+class Elevator
 {
 
     // Speed of the Elevator
@@ -23,7 +23,7 @@ class Elevator extends Thread
     private double MAX_SPEED = 3;
 
     // Destinations of Elevator in m
-    private volatile Vector<Integer> destinations;
+    public volatile Vector<Integer> destinations;
 
     private Thread movement;
 
@@ -34,27 +34,11 @@ class Elevator extends Thread
         speed = 0;
         height = 0;
         direction = 0;
-        movement = new Thread();
+        movement = new ElevatorThread(this);
+        destinations = new Vector<Integer>();
         movement.start();
     }
 
-    public void run()
-    {
-        while(true){
-            for (int i = 0; i < destinations.size(); i++){
-                if (destinations.get(i) > height / 3 && direction == 1){
-                    this.moveUp(destinations.get(i));
-                } else if(destinations.get(i) < height / 3 && direction == -1){
-                    this.moveDown(destinations.get(i));
-                } else if(destinations.get(i) > height / 3 && direction == 0){
-                    this.moveUp(destinations.get(i));
-                } else if(destinations.get(i) < height / 3 && direction == 0){
-                    this.moveDown(destinations.get(i));
-                }
-            }
-        }
-    }
-    
     // Returns the speed of the Elevator
     public double getSpeed()
     {
@@ -78,11 +62,15 @@ class Elevator extends Thread
         return destinations;
     }
 
-    public void moveUp(int floor)
+    public void addDestination(int dest)
+    {
+        destinations.add(dest);
+    }
+
+    public void moveUp(int floor, int ind)
     {
         try{
             direction = 1;
-            destinations.add(floor * 3);
             while (height < floor * 3)
             {
                 speed += 0.5;
@@ -90,16 +78,15 @@ class Elevator extends Thread
                 movement.sleep(995);
             }
             direction = 0;
-            destinations.remove(floor * 3);
+            destinations.remove(ind);
         } catch(InterruptedException e)
         {
             e.printStackTrace();
         }
     }
-    public void moveDown(int floor)
+    public void moveDown(int floor, int ind)
     {
         try{
-            destinations.add(floor * 3);
             direction = -1;
             while (height > floor * 3)
             {
@@ -108,7 +95,7 @@ class Elevator extends Thread
                 movement.sleep(995);
             }
             direction = 0;
-            destinations.remove(floor * 3);
+            destinations.remove(ind);
         } catch(InterruptedException e)
         {
             e.printStackTrace();
