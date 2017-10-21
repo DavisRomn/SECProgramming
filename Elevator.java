@@ -56,7 +56,7 @@ class Elevator
         return destinations;
     }
 
-    public callUp(int floor)
+    public void moveUp(int floor)
     {
         direction = 1;
         destinations.add(floor * 3);
@@ -69,7 +69,7 @@ class Elevator
         direction = 0;
         destinations.remove(floor * 3);
     }
-    public callDown(int floor)
+    public void moveDown(int floor)
     {
         destinations.add(floor * 3);
         direction = -1;
