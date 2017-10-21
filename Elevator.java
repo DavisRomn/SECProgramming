@@ -41,10 +41,20 @@ class Elevator extends Thread
     public void run()
     {
         while(true){
-
+            for (int i = 0; i < destinations.size(); i++){
+                if (destinations.get(i) > height / 3 && direction == 1){
+                    this.moveUp(destinations.get(i));
+                } else if(destinations.get(i) < height / 3 && direction == -1){
+                    this.moveDown(destinations.get(i));
+                } else if(destinations.get(i) > height / 3 && direction == 0){
+                    this.moveUp(destinations.get(i));
+                } else if(destinations.get(i) < height / 3 && direction == 0){
+                    this.moveDown(destinations.get(i));
+                }
+            }
         }
     }
-
+    
     // Returns the speed of the Elevator
     public double getSpeed()
     {
@@ -77,7 +87,7 @@ class Elevator extends Thread
             {
                 speed += 0.5;
                 height += speed;
-                movement.sleep(1000);
+                movement.sleep(995);
             }
             direction = 0;
             destinations.remove(floor * 3);
@@ -95,7 +105,7 @@ class Elevator extends Thread
             {
                 speed += 0.5;
                 height -= speed;
-                movement.sleep(1000);
+                movement.sleep(995);
             }
             direction = 0;
             destinations.remove(floor * 3);
