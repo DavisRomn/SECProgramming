@@ -73,7 +73,9 @@ class Elevator
             direction = 1;
             while (height < floor * 3)
             {
-                speed += 0.5;
+                if (speed < MAX_SPEED){
+                    speed += 0.5;
+                }
                 height += speed;
                 movement.sleep(995);
             }
@@ -90,7 +92,9 @@ class Elevator
             direction = -1;
             while (height > floor * 3)
             {
-                speed += 0.5;
+                if (speed < MAX_SPEED){
+                    speed += 0.5;
+                }
                 height -= speed;
                 movement.sleep(995);
             }
