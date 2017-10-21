@@ -64,7 +64,9 @@ class Elevator
 
     public void addDestination(int dest)
     {
-        destinations.add(dest);
+        if (!(dest == (int) (height / 3))) {
+            destinations.add(dest);
+        }
     }
 
     public void moveUp(int floor, int ind)
