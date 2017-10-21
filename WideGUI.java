@@ -6,18 +6,120 @@ import javax.swing.event.*;
 
 public class WideGUI extends JFrame {
     private JFrame main;
-//    private Scheduler theScheduler;
+    private JTextField[] speedLabel;
+    private JTextField[] heightLabel;
+    private JTextField[] directionLabel;
+    private JTextField[] stopLabel;
+    private JTextField[] currentFloor;
+    private JButton[] ups;
+    private JButton[] downs;
+    private Scheduler theScheduler;
 
     public WideGUI () {
         main = new JFrame();
         main.setTitle("Elevator Wide View");
-		main.setSize(440, 860);
+		main.setSize(600, 1020);
 		main.setLocationRelativeTo(null);
 		main.setResizable(false);
 		main.setLayout(new BorderLayout());
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel top = new JPanel(new GridLayout(0, 6));
+        speedLabel = new JTextField[3];
+        double[] speeds = new double[3]; ////////REPLACE WITH ACTUAL VALUES
+        for (int i = 0; i < 3; i++) {
+            speeds[i] = (double) i; //////////REPLACE WITH ACTUAL VALUES
+            JLabel temp = new JLabel("Speed: ");
+            temp.setFont(new Font("Courier", Font.PLAIN, 13));
+            top.add(temp);
+    		speedLabel[i] = new JTextField("" + speeds[i]);
+    		speedLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
+            speedLabel[i].setEditable(false);
+    		top.add(speedLabel[i]);
+        }
+        heightLabel = new JTextField[3];
+        double[] heights = new double[3]; ////////REPLACE WITH ACTUAL VALUES
+        for (int i = 0; i < 3; i++) {
+            heights[i] = (double) i + 3; //////////REPLACE WITH ACTUAL VALUES
+            JLabel temp = new JLabel("Height: ");
+            temp.setFont(new Font("Courier", Font.PLAIN, 13));
+            top.add(temp);
+    		heightLabel[i] = new JTextField("" + heights[i]);
+    		heightLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
+            heightLabel[i].setEditable(false);
+    		top.add(heightLabel[i]);
+        }
+        directionLabel = new JTextField[3];
+        double[] direction = new double[3]; ////////REPLACE WITH ACTUAL VALUES
+        for (int i = 0; i < 3; i++) {
+            direction[i] = (double) i + 6; //////////REPLACE WITH ACTUAL VALUES
+            JLabel temp = new JLabel("Direction: ");
+            temp.setFont(new Font("Courier", Font.PLAIN, 13));
+            top.add(temp);
+    		directionLabel[i] = new JTextField("" + direction[i]);
+    		directionLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
+            directionLabel[i].setEditable(false);
+    		top.add(directionLabel[i]);
+        }
+        stopLabel = new JTextField[3];
+        double[] stop = new double[3]; ////////REPLACE WITH ACTUAL VALUES
+        for (int i = 0; i < 3; i++) {
+            stop[i] = (double) i + 9; //////////REPLACE WITH ACTUAL VALUES
+            JLabel temp = new JLabel("Stop At: ");
+            temp.setFont(new Font("Courier", Font.PLAIN, 13));
+            top.add(temp);
+    		stopLabel[i] = new JTextField("" + stop[i]);
+    		stopLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
+            stopLabel[i].setEditable(false);
+    		top.add(stopLabel[i]);
+        }
+        main.add("North", top);
 
+        ups = new JButton[5];
+        JPanel mid = new JPanel(new GridLayout(0, 3));
+        JPanel mid1 = new JPanel(new BorderLayout());
+        JPanel mid1r = new JPanel(new GridLayout(0, 1, 20, 130));
+        JLabel temp = new JLabel("");
+        mid1r.add(temp);
+        for (int i = 0; i < 5; i++) {
+            ups[i] = new JButton("/\\");
+            mid1r.add(ups[i]);
+        }
+        mid1.add("East", mid1r);
+        currentFloor = new JTextField[3];
+        currentFloor[0] = new JTextField("" + 0);
+        currentFloor[0].setFont(new Font("Courier", Font.PLAIN, 18));
+        currentFloor[0].setEditable(false);
+        currentFloor[0].setHorizontalAlignment(JTextField.CENTER);
+        mid1.add("North", currentFloor[0]);
+        mid.add(mid1);
+
+        downs = new JButton[5];
+        JPanel mid2 = new JPanel(new BorderLayout());
+        JPanel mid2r = new JPanel(new GridLayout(0, 1, 20, 130));
+        temp = new JLabel("");
+        for (int i = 0; i < 5; i++) {
+            downs[i] = new JButton("\\/");
+            mid2r.add(downs[i]);
+        }
+        mid2r.add(temp);
+        mid2.add("East", mid2r);
+        currentFloor[1] = new JTextField("" + 1);
+        currentFloor[1].setFont(new Font("Courier", Font.PLAIN, 18));
+        currentFloor[1].setEditable(false);
+        currentFloor[1].setHorizontalAlignment(JTextField.CENTER);
+        mid2.add("North", currentFloor[1]);
+        mid.add(mid2);
+
+        JPanel mid3 = new JPanel(new BorderLayout());
+        currentFloor[2] = new JTextField("" + 2);
+        currentFloor[2].setFont(new Font("Courier", Font.PLAIN, 18));
+        currentFloor[2].setEditable(false);
+        currentFloor[2].setHorizontalAlignment(JTextField.CENTER);
+        mid3.add("North", currentFloor[2]);
+        mid.add(mid3);
+
+        main.add("Center", mid);
 
         main.setVisible(true);
     }
