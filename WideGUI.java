@@ -168,7 +168,13 @@ public class WideGUI extends JFrame {
             for (int i = 0; i < 3; i++) {
                 speedLabel[i].setText("" + theScheduler.getSpeed(i));
                 heightLabel[i].setText("" + theScheduler.getHeight(i));
-                directionLabel[i].setText("" + theScheduler.getDirection(i));
+                if (theScheduler.getDirection(i) > 0) {
+                    directionLabel[i].setText("Up");
+                } else if (theScheduler.getDirection(i) < 0) {
+                    directionLabel[i].setText("Down");
+                } else {
+                    directionLabel[i].setText("Stopped");
+                }
                 stopLabel[i].setText("" + theScheduler.getDestinations(i).toString());
             }
         }
