@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.table.*;
 import javax.swing.event.*;
+import java.util.*;
 
 public class WideGUI extends JFrame {
     private JFrame main;
@@ -22,25 +23,25 @@ public class WideGUI extends JFrame {
 		}
 		public void actionPerformed (ActionEvent e) {
 			if (e.getSource() == ups[0]) {
-				System.out.println("test");
+				theScheduler.callUp(4);
 			} else if (e.getSource() == ups[1]) {
-				System.out.println("test1");
+				theScheduler.callUp(3);
 			} else if (e.getSource() == ups[2]) {
-				System.out.println("test2");
+				theScheduler.callUp(2);
 			} else if (e.getSource() == ups[3]) {
-				System.out.println("test3");
+				theScheduler.callUp(1);
 			} else if (e.getSource() == ups[4]) {
-				System.out.println("test4");
+				theScheduler.callUp(0);
 			} else if (e.getSource() == downs[0]) {
-                System.out.println("test");
+                theScheduler.callDown(5);
             } else if (e.getSource() == downs[1]) {
-                System.out.println("test");
+                theScheduler.callDown(4);
             } else if (e.getSource() == downs[2]) {
-                System.out.println("test");
+                theScheduler.callDown(3);
             } else if (e.getSource() == downs[3]) {
-                System.out.println("test");
+                theScheduler.callDown(2);
             } else if (e.getSource() == downs[4]) {
-                System.out.println("test");
+                theScheduler.callDown(1);
             }
 		}
     }
@@ -54,6 +55,8 @@ public class WideGUI extends JFrame {
 		main.setLayout(new BorderLayout());
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        theScheduler = new Scheduling();
+
         eventListener listen = new eventListener(this);
 
         JPanel top = new JPanel(new GridLayout(0, 6));
@@ -64,7 +67,7 @@ public class WideGUI extends JFrame {
             JLabel temp = new JLabel("Speed: ");
             temp.setFont(new Font("Courier", Font.PLAIN, 13));
             top.add(temp);
-    		speedLabel[i] = new JTextField("" + speeds[i]);
+    		speedLabel[i] = new JTextField("" + theScheduler.getSpeed(i));
     		speedLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
             speedLabel[i].setEditable(false);
     		top.add(speedLabel[i]);
@@ -76,7 +79,7 @@ public class WideGUI extends JFrame {
             JLabel temp = new JLabel("Height: ");
             temp.setFont(new Font("Courier", Font.PLAIN, 13));
             top.add(temp);
-    		heightLabel[i] = new JTextField("" + heights[i]);
+    		heightLabel[i] = new JTextField("" + theScheduler.getHeight(i));
     		heightLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
             heightLabel[i].setEditable(false);
     		top.add(heightLabel[i]);
@@ -88,7 +91,7 @@ public class WideGUI extends JFrame {
             JLabel temp = new JLabel("Direction: ");
             temp.setFont(new Font("Courier", Font.PLAIN, 13));
             top.add(temp);
-    		directionLabel[i] = new JTextField("" + direction[i]);
+    		directionLabel[i] = new JTextField("" + theScheduler.getDirection(i));
     		directionLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
             directionLabel[i].setEditable(false);
     		top.add(directionLabel[i]);
@@ -100,7 +103,7 @@ public class WideGUI extends JFrame {
             JLabel temp = new JLabel("Stop At: ");
             temp.setFont(new Font("Courier", Font.PLAIN, 13));
             top.add(temp);
-    		stopLabel[i] = new JTextField("" + stop[i]);
+    		stopLabel[i] = new JTextField("" + theScheduler.getDestinations(i).toString());
     		stopLabel[i].setFont(new Font("Courier", Font.PLAIN, 13));
             stopLabel[i].setEditable(false);
     		top.add(stopLabel[i]);
@@ -155,10 +158,24 @@ public class WideGUI extends JFrame {
 
         main.add("Center", mid);
 
+
+
         main.setVisible(true);
+    }
+
+    public void updates() {
+        while (true) {
+            for (int i = 0; i < 3; i++) {
+                speedLabel[i].setText("" + theScheduler.getSpeed(i));
+                heightLabel[i].setText("" + theScheduler.getHeight(i));
+                directionLabel[i].setText("" + theScheduler.getDirection(i));
+                stopLabel[i].setText("" + theScheduler.getDestinations(i).toString());
+            }
+        }
     }
 
     public static void main(String[] args) {
 		WideGUI d = new WideGUI();
+        d.updates();
 	}
 }
