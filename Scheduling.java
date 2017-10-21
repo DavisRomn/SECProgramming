@@ -1,4 +1,5 @@
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 import java.lang.Math.*;
 
 class Scheduling
@@ -19,6 +20,7 @@ class Scheduling
             Elevators.add(new Elevator());
         }
     }
+
 
     public void callUp(int elevatorNumber, int floor)
     {

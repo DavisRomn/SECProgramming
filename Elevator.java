@@ -1,6 +1,7 @@
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
-class Elevator
+class Elevator extends Thread
 {
 
     // Speed of the Elevator
@@ -24,6 +25,8 @@ class Elevator
     // Destinations of Elevator in m
     private Vector<Integer> destinations;
 
+    private Thread movement;
+
     //Default Constructor
     Elevator()
     {
@@ -31,6 +34,15 @@ class Elevator
         speed = 0;
         height = 0;
         direction = 0;
+        movement = new Thread();
+        movement.start();
+    }
+
+    public void run()
+    {
+        while(1){
+            
+        }
     }
 
     // Returns the speed of the Elevator
