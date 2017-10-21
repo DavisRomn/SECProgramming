@@ -79,6 +79,7 @@ class Elevator
                 height += speed;
                 movement.sleep(995);
             }
+            speed = 0;
             direction = 0;
             destinations.remove(ind);
         } catch(InterruptedException e)
@@ -98,6 +99,7 @@ class Elevator
                 height -= speed;
                 movement.sleep(995);
             }
+            speed = 0;
             direction = 0;
             destinations.remove(ind);
         } catch(InterruptedException e)
