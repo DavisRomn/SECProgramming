@@ -1,4 +1,4 @@
-import java.util.Vector<E>;
+import java.util.Vector;
 
 class Elevator
 {
@@ -22,7 +22,7 @@ class Elevator
     private double MAX_SPEED = 3;
 
     // Destinations of Elevator in m
-    private Vector<int> destinations;
+    private Vector<Integer> destinations;
 
     //Default Constructor
     Elevator()
@@ -51,7 +51,7 @@ class Elevator
         return direction;
     }
 
-    public Vector<int> getDestinations()
+    public Vector<Integer> getDestinations()
     {
         return destinations;
     }
@@ -61,10 +61,10 @@ class Elevator
         direction = 1;
         destinations.add(floor * 3);
         /////////////////////////////////////////////////////////////////////////////////////// FIX TIMING
-        while (height < newDest * 3)
+        while (height < floor * 3)
         {
-            speed + 0.5;
-            height + speed;
+            speed += 0.5;
+            height += speed;
         }
         direction = 0;
         destinations.remove(floor * 3);
@@ -74,10 +74,10 @@ class Elevator
         destinations.add(floor * 3);
         direction = -1;
         /////////////////////////////////////////////////////////////////////////////////////// FIX TIMING
-        while (height > newDest * 3)
+        while (height > floor * 3)
         {
-            speed + 0.5;
-            height - speed;
+            speed += 0.5;
+            height -= speed;
         }
         direction = 0;
         destinations.remove(floor * 3);
@@ -85,7 +85,7 @@ class Elevator
 
     public boolean getStopped()
     {
-        if (direction = 0){
+        if (direction == 0){
             return true;
         } else {
             return false;
