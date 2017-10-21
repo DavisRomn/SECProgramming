@@ -22,16 +22,41 @@ class Scheduling
     }
 
 
-    public void callUp(int elevatorNumber, int floor)
+    public void callUp(int floor)
     {
-        ElevatorDestinations.get(elevatorNumber).add(floor);
+        Elevators.get(elevatorToCall(1, floor)).addDestination(floor * 3);
     }
 
-    public void callDown(int elevatorNumber, int floor)
+    public void callDown(int floor)
     {
-        //ElevatorDestinations.add(elevatorNumber).add(floor);
-        ElevatorDestinations.get(elevatorNumber).add(floor);
+        Elevators.get(elevatorToCall(-1, floor)).addDestination(floor * 3);
     }
+
+    public double getSpeed(int elev)
+    {
+        return Elevators.get(elev).getSpeed();
+    }
+
+    public double getHeight(int elev)
+    {
+        return Elevators.get(elev).getHeight();
+    }
+
+    public double getDirection(int elev)
+    {
+        return Elevators.get(elev).getDirection();
+    }
+
+    public boolean getStopped(int elev)
+    {
+        return Elevators.get(elev).getStopped();
+    }
+
+    public Vector<Integer> getDestinations(int elev)
+    {
+        return Elevators.get(elev).getDestinations();
+    }
+
 
     // Returns the height of the specified elevator in m
     public double getElevatorLocation(int elevatorNumber)

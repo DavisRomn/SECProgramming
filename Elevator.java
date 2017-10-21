@@ -5,16 +5,16 @@ class Elevator
 {
 
     // Speed of the Elevator
-    public volatile double speed;
+    private volatile double speed;
 
     //Height in-comparison to the building with the bottom of the elevator
-    public volatile double height;
+    private volatile double height;
 
     //Boolean for if already occupado
-    public volatile boolean occupied;
+    private volatile boolean occupied;
 
     // Int value of direction: -1 is down, 0 is stopped and 1 is up
-    public volatile int direction;
+    private volatile int direction;
 
     //Acceleration of the Elevators
     private volatile double acceleration = 0.5;
