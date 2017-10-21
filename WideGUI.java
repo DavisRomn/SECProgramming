@@ -13,7 +13,37 @@ public class WideGUI extends JFrame {
     private JTextField[] currentFloor;
     private JButton[] ups;
     private JButton[] downs;
-    private Scheduler theScheduler;
+    private Scheduling theScheduler;
+
+    private class eventListener implements ActionListener {
+		WideGUI display;
+		public eventListener (WideGUI d) {
+			display = d;
+		}
+		public void actionPerformed (ActionEvent e) {
+			if (e.getSource() == ups[0]) {
+				System.out.println("test");
+			} else if (e.getSource() == ups[1]) {
+				System.out.println("test1");
+			} else if (e.getSource() == ups[2]) {
+				System.out.println("test2");
+			} else if (e.getSource() == ups[3]) {
+				System.out.println("test3");
+			} else if (e.getSource() == ups[4]) {
+				System.out.println("test4");
+			} else if (e.getSource() == downs[0]) {
+                System.out.println("test");
+            } else if (e.getSource() == downs[1]) {
+                System.out.println("test");
+            } else if (e.getSource() == downs[2]) {
+                System.out.println("test");
+            } else if (e.getSource() == downs[3]) {
+                System.out.println("test");
+            } else if (e.getSource() == downs[4]) {
+                System.out.println("test");
+            }
+		}
+    }
 
     public WideGUI () {
         main = new JFrame();
@@ -23,6 +53,8 @@ public class WideGUI extends JFrame {
 		main.setResizable(false);
 		main.setLayout(new BorderLayout());
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        eventListener listen = new eventListener(this);
 
         JPanel top = new JPanel(new GridLayout(0, 6));
         speedLabel = new JTextField[3];
@@ -83,6 +115,7 @@ public class WideGUI extends JFrame {
         mid1r.add(temp);
         for (int i = 0; i < 5; i++) {
             ups[i] = new JButton("/\\");
+            ups[i].addActionListener(listen);
             mid1r.add(ups[i]);
         }
         mid1.add("East", mid1r);
@@ -100,6 +133,7 @@ public class WideGUI extends JFrame {
         temp = new JLabel("");
         for (int i = 0; i < 5; i++) {
             downs[i] = new JButton("\\/");
+            downs[i].addActionListener(listen);
             mid2r.add(downs[i]);
         }
         mid2r.add(temp);
