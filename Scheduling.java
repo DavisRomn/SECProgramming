@@ -24,12 +24,12 @@ class Scheduling
 
     public void callUp(int floor)
     {
-        Elevators.get(elevatorToCall(1, floor)).addDestination(floor * 3);
+        Elevators.get(elevatorToCall(1, floor)).addDestination(floor);
     }
 
     public void callDown(int floor)
     {
-        Elevators.get(elevatorToCall(-1, floor)).addDestination(floor * 3);
+        Elevators.get(elevatorToCall(-1, floor)).addDestination(floor);
     }
 
     public double getSpeed(int elev)
