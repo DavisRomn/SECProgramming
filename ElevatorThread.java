@@ -12,7 +12,6 @@ class ElevatorThread extends Thread
     @Override
     public void run()
     {
-        System.out.println("Meme");
         while(true){
             for (int i = 0; i < e.destinations.size(); i++){
                 if (e.destinations.get(i) > e.getHeight() / 3 && e.getDirection() == 1){

@@ -77,6 +77,9 @@ class Elevator
                     speed += 0.5;
                 }
                 height += speed;
+                if (height > floor * 3) {
+                    height = floor * 3;
+                }
                 movement.sleep(995);
             }
             speed = 0;
@@ -97,6 +100,9 @@ class Elevator
                     speed += 0.5;
                 }
                 height -= speed;
+                if (height < floor * 3) {
+                    height = floor * 3;
+                }
                 movement.sleep(995);
             }
             speed = 0;
