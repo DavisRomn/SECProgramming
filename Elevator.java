@@ -64,7 +64,7 @@ class Elevator
 
     public void addDestination(int dest)
     {
-        if (!(dest == (int) (height / 3)) && !destinations.contains(dest)) {
+        if (!(dest == (int) (height / 3) && direction == 0) && !destinations.contains(dest)) {
             destinations.add(dest);
         }
     }
