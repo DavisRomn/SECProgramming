@@ -176,6 +176,7 @@ public class WideGUI extends JFrame {
                     directionLabel[i].setText("Stopped");
                 }
                 stopLabel[i].setText("" + theScheduler.getDestinations(i).toString());
+                currentFloor[i].setText("" + (int) (theScheduler.getHeight(i) / 3));
             }
         }
     }
