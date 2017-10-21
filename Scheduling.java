@@ -65,7 +65,7 @@ class Scheduling
     }
 
     public void addElevatorDestination(int elevator, int floor){
-        Elevators.get(elevator).addDestination(floor * 3);
+        Elevators.get(elevator).addDestination(floor);
     }
 
     public int elevatorToCall(int callDir, int callFloor)
@@ -73,7 +73,8 @@ class Scheduling
         Vector<Double> score = new Vector<Double>();
         int N = numberOfFLoors - 1;
         for(int i = 0; i < Elevators.size(); i++){
-            double h = Elevators.get(i).getHeight() / 3;
+            double h = Elevators.get(i).getHeight();
+            h = h / 3;
             double d = Elevators.get(i).getDirection();
             if(callDir == 1 && d != 0){
                 if(callFloor > h && d == 1){
