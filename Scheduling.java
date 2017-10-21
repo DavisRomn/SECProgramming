@@ -72,7 +72,7 @@ class Scheduling
     {
         Vector<Double> score = new Vector<Double>();
         int N = numberOfFLoors - 1;
-        for(int i = 0; i < Elevators.size(); i++){
+        for(int i = 0; i < Elevators.size() - 1; i++){
             double h = Elevators.get(i).getHeight();
             h = h / 3;
             double d = Elevators.get(i).getDirection();
